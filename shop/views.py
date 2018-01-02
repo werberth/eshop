@@ -18,3 +18,15 @@ def product_list(request, category_slug=None):
     }
     template = 'shop/product/list.html'
     return render(request, template, context)
+
+
+def product_detail(request, id, slug):
+    product = get_object_or_404(
+        Product,
+        id=id,
+        slug=slug,
+        available=True
+    )
+    template = 'shop/product/detail.html'
+    context = {'product': product}
+    return render(request, template, context)
